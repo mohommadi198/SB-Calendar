@@ -1,13 +1,324 @@
-body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+:root {
+  --primary: #1a472a;
+  /* Deep Islamic Green */
+  --primary-glow: rgba(26, 71, 42, 0.1);
+  --secondary: #c5a059;
+  /* Rich Gold */
+  --bg-gradient: linear-gradient(135deg, #f8f9f7 0%, #edf2f0 100%);
+  --glass: rgba(255, 255, 255, 0.7);
+  --glass-border: rgba(255, 255, 255, 0.4);
+  --text-main: #1a1a1a;
+  --text-muted: #717171;
+  --shadow-soft: 0 10px 25px -5px rgba(0, 0, 0, 0.05), 0 8px 10px -6px rgba(0, 0, 0, 0.05);
+  --shadow-hover: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+  --radius-xl: 30px;
+  --radius-lg: 20px;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  -webkit-tap-highlight-color: transparent;
+}
+
+body {
+  background: var(--bg-gradient);
+  color: var(--text-main);
+  font-family: 'Outfit', sans-serif;
+  line-height: 1.6;
+  min-height: 100vh;
+}
+
+/* Flex Container to push Ad to bottom */
+.app-container {
+  max-width: 480px;
+  margin: 0 auto;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background: white;
+  position: relative;
+}
+
+.content-area {
+  flex: 1;
+  /* This takes up all available space */
+}
+
+/* Ultra Modern Header */
+.app-header {
+  position: sticky;
+  top: 0;
+  background: var(--glass);
+  backdrop-filter: blur(15px);
+  -webkit-backdrop-filter: blur(15px);
+  border-bottom: 1px solid var(--glass-border);
+  padding: 20px;
+  z-index: 1000;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.app-title {
+  font-size: 1.4rem;
+  font-weight: 800;
+  background: linear-gradient(90deg, var(--primary), var(--secondary));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* Install Button Refinement */
+.install-btn {
+  background: var(--primary);
+  color: white;
+  padding: 8px 14px;
+  border-radius: 12px;
+  font-size: 0.75rem;
+  font-weight: 700;
+  border: none;
+  box-shadow: 0 4px 10px var(--primary-glow);
+}
+
+/* Slim Top Navigation */
+.app-header {
+  position: sticky;
+  top: 0;
+  background: white;
+  border-bottom: 1px solid #eee;
+  padding: 10px 16px;
+  z-index: 1000;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+}
+
+.app-title {
+  font-size: 1.1rem;
+  font-weight: 800;
+  color: var(--primary);
+  margin: 0;
+}
+
+/* Single Row Navigation */
+.app-header {
+  position: sticky;
+  top: 0;
+  background: white;
+  border-bottom: 1px solid #eee;
+  padding: 8px 12px;
+  z-index: 1000;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+}
+
+.navbar {
+  display: flex;
+  align-items: center;
+  width: 100%;
+}
+
+.nav-logo-area {
+  min-width: 60px;
+  display: flex;
+  align-items: center;
+}
+
+.app-title-mini {
+  font-size: 1.25rem;
+  font-weight: 900;
+  color: var(--primary);
+  margin: 0;
+  letter-spacing: -1px;
+}
+
+.nav-links-group {
+  display: flex;
+  gap: 20px; /* More breathing room */
+  flex: 1;
+  justify-content: center;
+}
+
+.nav-link, .nav-link-btn {
+  font-size: 0.7rem;
+  font-weight: 700;
+  color: var(--text-muted);
+  text-decoration: none;
+  display: flex;
+  flex-direction: column; /* Stack icon and text for mobile feel */
+  align-items: center;
+  gap: 3px;
+  padding: 4px 0;
+  border-bottom: 2px solid transparent;
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-family: inherit;
+}
+
+.nav-link.active {
+  color: var(--primary);
+  border-bottom: 2px solid var(--primary);
+}
+
+.nav-link-btn {
+  color: var(--primary); /* Make install button stand out slightly */
+}
+
+/* Ultimate AdMob Style Fixed Banner */
+.ads-banner-container {
+  position: fixed !important;
+  bottom: 0 !important;
+  left: 0 !important;
+  right: 0 !important;
+  height: 60px;
+  background: white;
+  border-top: 1px solid #ddd;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  z-index: 10000;
+  padding: 0;
+  margin: 0;
+  border-radius: 0;
+}
+
+.ad-badge {
+  position: absolute;
+  top: 4px;
+  left: 4px;
+  background: rgba(0, 0, 0, 0.5);
+  color: white;
+  font-size: 8px;
+  padding: 1px 4px;
+  border-radius: 4px;
+  z-index: 2;
+  font-weight: 700;
+  pointer-events: none;
+}
+
+.ad-image {
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+}
+
+/* Premium Content Sections */
+.section {
+  padding: 24px 20px;
+}
+
+.section-title {
+  font-size: 1.3rem;
+  font-weight: 800;
+  margin-bottom: 20px;
+  color: var(--text-main);
+  letter-spacing: -0.5px;
+}
+
+/* Floating Cards */
+.card-premium {
+  background: white;
+  border-radius: var(--radius-lg);
+  padding: 10px;
+  box-shadow: var(--shadow-soft);
+  transition: all 0.3s ease;
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  cursor: pointer;
+  margin-bottom: 20px;
+}
+
+.card-premium:hover,
+.card-premium:active {
+  transform: translateY(-5px);
+  box-shadow: var(--shadow-hover);
+}
+
+/* Small Floating Ad Banner */
+.ads-banner-container {
+  position: fixed;
+  bottom: 110px;
+  left: 20px;
+  right: 20px;
+  height: 60px;
+  background: var(--glass);
+  backdrop-filter: blur(10px);
+  border-radius: 15px;
+  overflow: hidden;
+  box-shadow: var(--shadow-soft);
+  border: 1px solid var(--glass-border);
+  z-index: 900;
+}
+
+.ad-image {
+  height: 100%;
+  width: 100%;
+  object-fit: contain;
+}
+
+.img-resp {
+  width: 100%;
+  border-radius: 16px;
+  display: block;
+}
+
+/* Skeleton Loading Shimmer */
+.skeleton {
+  background: linear-gradient(90deg, #f0f0f0 25%, #f8f8f8 50%, #f0f0f0 75%);
+  background-size: 200% 100%;
+  animation: shimmer 1.5s infinite;
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: 200% 0;
+  }
+
+  100% {
+    background-position: -200% 0;
+  }
+}
+
+/* Notifications Feed */
+.modern-notif-card {
+  background: white;
+  border-radius: var(--radius-lg);
+  padding: 20px;
+  margin-bottom: 16px;
+  box-shadow: var(--shadow-soft);
+  border-left: 4px solid var(--primary);
+}
+
+.notif-badge {
+  font-size: 0.65rem;
+  font-weight: 800;
+  background: #f0fdf4;
+  color: #166534;
+  padding: 4px 8px;
+  border-radius: 6px;
+  text-transform: uppercase;
+}
+
+/* Fast Fade Animation */
+.fade-up {
+  animation: fadeUp 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* Spinner for SafeImage */
+.spinner-mini {
+  width: 24px;
+  height: 24px;
+  border: 3px solid rgba(16, 185, 129, 0.1);
+  border-top-color: #10b981;
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+/* Global Image Reset for Mobile */
+img {
+  max-width: 100%;
+  height: auto;
 }
