@@ -34,12 +34,10 @@ const TodayView: React.FC<TodayViewProps> = ({ loading, featuredMonth, currentMo
           <p style={{ marginTop: '10px', color: 'var(--text-muted)' }}>No calendar for {currentMonthName} yet.</p>
         </div>
       )}
-
       <p style={{ textAlign: 'center', fontSize: '0.8rem', color: 'var(--text-muted)', marginTop: '20px' }}>
         Swipe or check Explore for other months.
       </p>
     </div>
   );
 };
-
 export default TodayView;
